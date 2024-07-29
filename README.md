@@ -2,4 +2,4 @@
 - 👀 I’m interested in machine learning!
 - 🌱 I’m currently learning Python for data science.
 - 💞️ I’m looking to collaborate on getting into machine learning... or any cool startup ideas you might have!
-- 📫 How to reach me: @oscarhillpsych on Twitter or linkedin.com/in/oscar-hill
+- 📫 How to reach me: linkedin.com/in/oscar-hill
