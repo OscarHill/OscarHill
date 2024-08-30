@@ -1,0 +1,48 @@
+#Load in packages
+library(robumeta)
+
+##Load in data
+#Ideology
+fm <- read.csv("fm.csv")
+parti <- read.csv("parti.csv")
+pol <- read.csv("pol.csv")
+
+
+
+#Get respective Fisher's z effect sizes
+#age
+parti_z <- robu(formula = z ~ 1, data = parti,
+                 studynum = study, var.eff.size = vz,
+                 rho = .8, small = TRUE)
+print(parti_z)
+
+
+
+#Sensitivity analysis
+sensitivity(parti_z)
+
+
+
+#Get respective Fisher's z effect sizes
+#age
+fm_z <- robu(formula = z ~ 1, data = fm,
+                 studynum = study, var.eff.size = vz,
+                 rho = .8, small = TRUE)
+print(fm_z)
+
+
+
+#Sensitivity analysis
+sensitivity(fm_z)
+
+#Get respective Fisher's z effect sizes
+#age
+pol_z <- robu(formula = z ~ 1, data = pol,
+                 studynum = study, var.eff.size = vz,
+                 rho = .8, small = TRUE)
+print(pol_z)
+
+
+
+#Sensitivity analysis
+sensitivity(pol_z)
