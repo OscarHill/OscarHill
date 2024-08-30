@@ -1,0 +1,111 @@
+import random, os, time
+
+usedLetters=[]
+hangCounter = 0
+
+# Word List
+words = ('ant baboon badger bat bear beaver camel cat clam cobra cougar'
+   'coyote crow deer dog donkey duck eagle ferret fox frog goat '
+   'goose hawk lion lizard llama mole monkey moose mouse mule newt '
+   'otter owl panda parrot pigeon python rabbit ram rat raven '
+   'rhino salmon seal shark sheep skunk sloth snake spider '
+   'stork swan tiger toad trout turkey turtle weasel whale wolf '
+   'wombat zebra ').split()
+
+# Hangman display function
+HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
+def hangPrint(val):
+  print(HANGMANPICS[val])
+
+# Initialisation
+restart = "N"
+while True:
+  restart = input("Start a new game? (Y/N)").upper()
+  if restart == "Y":
+    break
+  elif restart == "N":
+    exit()
+
+targetWord = random.choice(words)
+guesses = []
+for j in range(len(targetWord)):
+  guesses.append("_")
+
+# Game loop
+while True:
+  print(guesses)
+  chosenLetter = input("Choose a letter:")
+  counter = 0
+  if chosenLetter.upper() in usedLetters:
+    print("Letter already guessed!")
+    time.sleep(1)
+    continue
+  for letter in targetWord:
+    if letter.upper() == chosenLetter.upper():
+      i = targetWord.index(letter)
+      guesses.pop(i)
+      guesses.insert(i, chosenLetter.upper())
+      counter += 1
+  if counter == 0:
+    print("Not in answer!")
+    usedLetters.append(chosenLetter.upper())
+    hangCounter += 1
+  os.system("clear")
+  hangPrint(hangCounter)
+  print(f"Used letters: {usedLetters}")
+  if hangCounter == 6:
+    print("GAME OVER")
+    break
+  counter = 0
+ 
+  continue
